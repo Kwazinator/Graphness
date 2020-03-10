@@ -19,4 +19,4 @@ def index():
     returnlist = list()
     for item in results:
         returnlist.append(item.serialize())
-    return render_template('index.html',result=json.loads(json.dumps(returnlist)),test='testing123')
+    return render_template('index.html',result=json.loads(json.dumps(returnlist)),test='steven is gay')
