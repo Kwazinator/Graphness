@@ -26,7 +26,7 @@ def init_db():
 
 def custom_code_db():
     db = get_db()
-    return db.execute('SELECT * from MenuItem')
+    return db.execute('SELECT * from graph')
 
 def insert_db():
     db = get_db()

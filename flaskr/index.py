@@ -20,3 +20,19 @@ def index():
     #for item in results:
         #returnlist.append(item.serialize())
     return render_template('index.html',test='steven is gay')
+
+@bp.route('/about')
+def about():
+    return 'yolo'
+
+@bp.route('/graph')
+def graph():
+    graph = GraphService().get_graph_item_by_names('richest people in the world')
+    return 'graph: ' + str(graph[0].dataid)
+
+@bp.route('/insertgraph')
+def insertgraph():
+    name = request.args.get('name')
+    dataid = request.args.get('dataid')
+    GraphService().insert_graph(name,dataid)
+    return 'OK'

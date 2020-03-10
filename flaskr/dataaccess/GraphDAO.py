@@ -6,7 +6,18 @@ class GraphDAO:
     def __init__(self):
         pass
 
-    def get_graph_by_name(self, name):
+    def insert_graph(self,name, dataid):
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute('INSERT INTO graph (name,dataid) VALUES (?,?)',(name,dataid))
+        db.commit()
+        return
+
+
+
+
+
+    def get_graph_item_by_names(self, name):
         db = get_db()
         cursor = db.cursor()
         try:
