@@ -1,7 +1,7 @@
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, jsonify, make_response, current_app, session, send_file
 )
-from flaskr.services.MenuItemService import MenuItemService
+from flaskr.services.GraphService import GraphService
 import json
 bp = Blueprint('index', __name__)
 
@@ -14,9 +14,9 @@ def index():
 
     query_string_query = request.args.get('query')
     query_string_search = request.args.get('search')
-    results = MenuItemService().get_menu_item_by_names('Burger')
-    print(results)
-    returnlist = list()
-    for item in results:
-        returnlist.append(item.serialize())
+    #results = MenuItemService().get_menu_item_by_names('Burger')
+    #print(results)
+    #returnlist = list()
+    #for item in results:
+        #returnlist.append(item.serialize())
     return render_template('index.html',result=json.loads(json.dumps(returnlist)),test='steven is gay')
