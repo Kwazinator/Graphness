@@ -11,31 +11,66 @@ class BodyGraph extends React.Component {
 
     constructor(props) {
         super(props)
+        var dataarrays = [];
+        var graphaxises = [];
+        var names = [];
+        console.log(this.props.graph.length);
+        for (var x =0;x<this.props.graph.length;x++) {
+            var graphdata = this.props.graph[x]['graphdata'];
+            var graphaxis = this.props.graph[x]['graphaxis'];
+            var name = this.props.graph[x]['graph']['name'];
+            var copydataarray = [];
+            var maximumdatapoints = 0;
+            graphdata.map((graph, z) => {
+                if (maximumdatapoints < graph.length) {
+                    maximumdatapoints = graph.length;
+                }
+            });
+
+            for (var i=0;i<maximumdatapoints;i++) {
+                var thedata = {name: i};
+                for (var j=0;j<graphaxis.length;j++) {
+                    if (i < graphdata[j].length ) {
+                        thedata[graphaxis[j]['name']] = parseInt(graphdata[j][i]);
+                    }
+                }
+                copydataarray.push(thedata);
+            }
+            dataarrays.push(copydataarray);
+            graphaxises.push(graphaxis);
+            names.push(name);
+        }
+
+
+
+
+
+
+
+
+
+        console.log(dataarrays)
+        console.log(graphaxises)
+        var numloaded = dataarrays.length;
         this.state = {
             token: 1,
-            dataarray: Array(9).fill(
-                [
-                    {name: 'Page A', uv: 4000, pv: 2400, amt: 2400,},
-                    {name: 'Page B', uv: 3000, pv: 1398, amt: 2210,},
-                    {name: 'Page C', uv: 2000, pv: 9800, amt: 2290,},
-                    {name: 'Page D', uv: 2780, pv: 3908, amt: 2000,},
-                    {name: 'Page E', uv: 1890, pv: 4800, amt: 2181,},
-                    {name: 'Page F', uv: 2390, pv: 3800, amt: 2500,},
-                    {name: 'Page G', uv: 3490, pv: 4300, amt: 2100,},
-                 ]),
+            dataarrays: dataarrays,
+            dataaxises: graphaxises,
             namearray: Array(9).fill('name2'),
-            graphs: [1,2,3],
+            names: names,
+            numloaded: numloaded,
         };
 
     }
 
     loadItems() {
-        var graphs = this.state.graphs;
+        var graphs = this.state.dataarrays;
+        //add new graphs with axiom here
         graphs.push('bar');
-        graphs.push('bar3d');
+        graphs.push('bar');
         graphs.push('bar');
         this.setState({
-            graphs: graphs,
+            dataarrays: graphs,
         });
     }
 
@@ -60,12 +95,12 @@ class BodyGraph extends React.Component {
 
         var items = [];
 
-        this.state.graphs.map((graph, i) => {
+        this.state.dataarrays.map((graph, i) => {
             items.push(
-                <ElementGraph />
+                <ElementGraph name={this.state.names[i]} dataarray={graph} dataaxises={this.state.dataaxises[i]} width={400} height={240}/>
             );
         });
-        return (<div><ElementGraph /><ElementGraph /> <ElementGraph />
+        return (<div>
             <InfiniteScroll
                 pageStart={0}
                 loadMore={this.loadItems.bind(this)}
