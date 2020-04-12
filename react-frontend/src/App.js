@@ -12,7 +12,7 @@ class GraphDetails extends React.Component {
             );
         });
 
-        return (<div>{this.props.name}
+        return (
         <LineChart
         width={this.props.width}
         height={this.props.height}
@@ -29,7 +29,6 @@ class GraphDetails extends React.Component {
         <Legend />
         {items}
         </LineChart>
-        </div>
         );
     }
 }

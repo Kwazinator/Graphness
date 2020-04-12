@@ -10,7 +10,7 @@ def index():
     #print(json.dumps(GraphService().get_graph_data(1,3,0,3), indent=4))
 
     #get_graph_data(userid,interval,offset,numbergraphs
-    graphdata = json.dumps(GraphService().get_graph_data(1,3,0,4))
+    graphdata = json.dumps(GraphService().get_graph_data(1,3,0,3))
     return render_template('index.html',graphdata=graphdata)
 
 @bp.route('/about')
@@ -19,8 +19,10 @@ def about():
 
 @bp.route('/getgraph')
 def graph():
-    graph = GraphService().get_graph_item_by_names('richest people in the world')
-    return 'graph: ' + str(graph[0].dataid)
+    offset = request.args.get('offset')
+    num = request.args.get('num')
+    graphdata = json.dumps(GraphService().get_graph_data(1,3,offset,num))
+    return jsonify(graphdata=json.loads(graphdata))
 
 @bp.route('/insertgraph')
 def insertgraph():

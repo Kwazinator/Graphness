@@ -32,24 +32,11 @@ class TopGraph extends React.Component {
             name: this.props.graph['graph']['name'],
             dataarray: copydataarray,
             dataaxises: graphaxis,
-            namearray: Array(9).fill('name2'),
-            };
+            description: this.props.graph['graph']['description'],
+            author: this.props.graph['graph']['authorname'],
+            catagory: this.props.graph['graph']['catagory'],
+        };
 
-    }
-
-    handleClick(i) {
-        const dataarray = this.state.dataarray;
-        dataarray[i] =
-                        [
-                    {name: 'Page B', uv: 4000, pv: 2400, amt: 2400,},
-                    {name: 'Page C', uv: 3000, pv: 1398, amt: 2210,},
-                    {name: 'Page D', uv: 2000, pv: 9800, amt: 2290,},
-                    {name: 'Page E', uv: 2780, pv: 3908, amt: 2000,},
-                    {name: 'Page F', uv: 1890, pv: 4800, amt: 2181,},
-                    {name: 'Page G', uv: 2390, pv: 3800, amt: 2500,},
-                    {name: 'Page H', uv: 3490, pv: 4300, amt: 2100,},
-                 ];
-        this.setState({dataarray: dataarray, namearray: Array(9).fill('name1'),});
     }
 
     render () {
@@ -63,19 +50,19 @@ class TopGraph extends React.Component {
                 <Graph data={this.state.dataarray} dataaxises={this.state.dataaxises} width={600} height={360}/>
               </a>
               <div class="top-post-text">
-	            <a href="#" class="category-link"></a>
+	            <a href="#" class="category-link">{this.state.catagory}</a>
 	            <div class="top-post-text">
 		          <a href="#" class="category-link">
 		          </a>
 		          <a href="#" class="top-post-link-block w-inline-block">
 			        <h2 class="h2">{this.state.name}</h2>
 		          </a>
-		          <div class="post-short-text">descr</div>
+		          <div class="post-short-text">{this.state.description}</div>
 		          <div class="text-block-2">
 		          </div>
                   <div class="post-author-text">
 		            <div class="post-author cc-top-margin">By</div>
-                    <a href="#" class="post-author">author</a>
+                    <a href="#" class="post-author">{this.state.author}</a>
                 </div>
                 </div>
               </div>

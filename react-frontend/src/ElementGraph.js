@@ -14,18 +14,18 @@ class ElementGraph extends React.Component {
         return (
             <div class="_3-collection-item w-dyn-item w-col w-col-3">
                 <a href="#" class="posts-image w-inline-block">
-                    <Graph data={this.props.dataarray} dataaxises={this.props.dataaxises} width={600} height={360}/>
+                    <Graph data={this.props.dataarray} dataaxises={this.props.dataaxises} width={this.props.width} height={this.props.height}/>
                 </a>
                 <div class="post-info-text">
-                    <a href="#" class="category-link">catagory</a>
+                    <a href="#" class="category-link">{this.props.catagory}</a>
                     <br></br>
                     <a href="#" class="post-title w-inline-block">
                         <h3 class="h3">{this.props.name}</h3>
                     </a>
-                    <div>Description</div>
+                    <div>{this.props.description}</div>
                     <div class="post-author-text cc-small-thumbnail">
                         <div class="post-author cc-top-margin">By</div>
-                        <a href="#" class="post-author">author</a>
+                        <a href="#" class="post-author">{this.props.author}</a>
                     </div>
                 </div>
             </div>

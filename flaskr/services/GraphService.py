@@ -25,7 +25,6 @@ class GraphService:
             return None
         toreturn = list()
         for graph in graphs:
-            print(graph.serialize())
             graphaxis = GraphDAO().get_graph_axis(graph.id)
             graphdatalist = list()
             for axis in graphaxis:

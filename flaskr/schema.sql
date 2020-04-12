@@ -30,7 +30,11 @@ CREATE TABLE usertograph (
 CREATE TABLE graph (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   name TEXT NOT NULL,
-  type TEXT NOT NULL
+  type TEXT NOT NULL,
+  description TEXT,
+  authorid INTEGER NOT NULL,
+  authorname TEXT NOT NULL,
+  catagory TEXT
 );
 
 CREATE TABLE axisdata (

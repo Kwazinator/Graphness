@@ -31,7 +31,7 @@ class GraphDAO:
         #row = cursor.execute('SELECT ug.graphid from user u JOIN usertograph ug on u.id=ug.userid WHERE u.id=? ORDER BY ug.order ASC LIMIT ? OFFSET ?'(id,num,start)).fetchall()
         if row is not None:
             for item in row:
-                graphlist.append(Graph(item[0],item[1],item[2]))
+                graphlist.append(Graph(item[0],item[1],item[2],item[3],item[4],item[5],item[6]))
             return graphlist
         else:
             return None
@@ -44,7 +44,7 @@ class GraphDAO:
             row = cursor.execute('SELECT * FROM graph WHERE name=?',(name,)).fetchall()
             graphlist = list()
             for item in row:
-                graphlist.append(Graph(item[0],item[1],item[2]))
+                graphlist.append(Graph(item[0],item[1],item[2],item[3],item[4],item[5],item[6]))
             return graphlist
         except Exception as e:
             print('error in get_graph_by_name')
@@ -58,7 +58,7 @@ class GraphDAO:
         cursor = db.cursor()
         try:
             row = cursor.execute('SELECT * FROM graph WHERE id=?',(id,)).fetchone()
-            return Graph(row[0],row[1],row[2])
+            return Graph(row[0],row[1],row[2],row[3],row[4],row[5],row[6])
         except Exception as e:
             print('error in get_graph_by_id')
             print(e)
