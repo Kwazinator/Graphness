@@ -6,6 +6,8 @@ import TopGraph from './TopGraph';
 import * as serviceWorker from './serviceWorker';
 import ChartZ from './ZingChart'
 import BodyGraph from './BodyGraph'
+import Example from './example'
+import Victory from './Victory'
 
 var topgraph;
 var bodygraph;
@@ -16,8 +18,10 @@ if (window.token.length > 0) {
 if (window.token.length > 1) {
     bodygraph = window.token;
 }
-
+console.log("hi");
 console.log(bodygraph);
+
+//ReactDOM.render(<Victory width={400} height={240}/>, document.getElementById('top-posts'));
 ReactDOM.render(<TopGraph width={600} height={360} graph={topgraph}/>, document.getElementById('top-posts'));
 ReactDOM.render(<BodyGraph width={400} height={240} graph={bodygraph}/>, document.getElementById('postscontainer'));
 //ReactDOM.render(<ChartZ type={'bar'}/>, document.getElementById('row2'));
